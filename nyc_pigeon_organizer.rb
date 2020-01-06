@@ -1,11 +1,20 @@
 def nyc_pigeon_organizer(data)
-  data.each_with_object({}) do |(key, h), result|
-    h.each do |value, names|
+  new_hash = {}
+  data.each do |key, value|
+    value.each do |new_value, names|
       names.each do |name|
-        result[name] ||= {}
-        result[name][key] ||= []
-        result[name][key] << value.to_s
+
+        if !new_hash[name]
+          new_hash[name]= {}
+        end
+
+        if !new_hash[name][key]
+          new_hash[name][key] = []
+        end
+
+        new_hash[name][key] << new_hash.to_s
       end
     end
   end
+  new_hash
 end
